@@ -147,26 +147,25 @@ class BeRocket_cart_suggestion_custom_post extends BeRocket_custom_post_class {
     );
     protected static $instance;
     function __construct() {
-        add_action('BeRocket_framework_init_plugin', array($this, 'init_conditions'));
         $this->post_name = 'br_suggestion';
         $this->post_settings = array(
-            'label' => __( 'Suggestion', 'cart-products-suggestions-for-woocommerce' ),
+            'label' => 'Suggestion',
             'labels' => array(
-                'name'               => __( 'Suggestions', 'cart-products-suggestions-for-woocommerce' ),
-                'singular_name'      => __( 'Suggestion', 'cart-products-suggestions-for-woocommerce' ),
-                'menu_name'          => _x( 'Suggestions', 'Admin menu name', 'cart-products-suggestions-for-woocommerce' ),
-                'add_new'            => __( 'Add Suggestion', 'cart-products-suggestions-for-woocommerce' ),
-                'add_new_item'       => __( 'Add New Suggestion', 'cart-products-suggestions-for-woocommerce' ),
-                'edit'               => __( 'Edit', 'cart-products-suggestions-for-woocommerce' ),
-                'edit_item'          => __( 'Edit Suggestion', 'cart-products-suggestions-for-woocommerce' ),
-                'new_item'           => __( 'New Suggestion', 'cart-products-suggestions-for-woocommerce' ),
-                'view'               => __( 'View Suggestions', 'cart-products-suggestions-for-woocommerce' ),
-                'view_item'          => __( 'View Suggestion', 'cart-products-suggestions-for-woocommerce' ),
-                'search_items'       => __( 'Search Suggestions', 'cart-products-suggestions-for-woocommerce' ),
-                'not_found'          => __( 'No Suggestions found', 'cart-products-suggestions-for-woocommerce' ),
-                'not_found_in_trash' => __( 'No Suggestions found in trash', 'cart-products-suggestions-for-woocommerce' ),
+                'name'               => 'Suggestions',
+                'singular_name'      => 'Suggestion',
+                'menu_name'          => 'Suggestions',
+                'add_new'            => 'Add Suggestion',
+                'add_new_item'       => 'Add New Suggestion',
+                'edit'               => 'Edit',
+                'edit_item'          => 'Edit Suggestion',
+                'new_item'           => 'New Suggestion',
+                'view'               => 'View Suggestions',
+                'view_item'          => 'View Suggestion',
+                'search_items'       => 'Search Suggestions',
+                'not_found'          => 'No Suggestions found',
+                'not_found_in_trash' => 'No Suggestions found in trash',
             ),
-            'description'     => __( 'This is where you can add new suggestions that you can add to products.', 'cart-products-suggestions-for-woocommerce' ),
+            'description'     => 'This is where you can add new suggestions that you can add to products.',
             'public'          => true,
             'show_ui'         => true,
             'capability_type' => 'post',
@@ -184,9 +183,6 @@ class BeRocket_cart_suggestion_custom_post extends BeRocket_custom_post_class {
             'condition_mode'=> '',
             'products'=> array(),
         );
-        $this->add_meta_box('conditions', __( 'Conditions', 'cart-products-suggestions-for-woocommerce' ));
-        $this->add_meta_box('settings', __( 'Cart Suggestion Settings', 'cart-products-suggestions-for-woocommerce' ));
-        $this->add_meta_box('description', __( 'Description', 'cart-products-suggestions-for-woocommerce' ), false, 'side');
         parent::__construct();
 
         add_filter('brfr_'.$this->hook_name.'_price_var', array($this, 'price_var'), 20, 4);
@@ -194,22 +190,41 @@ class BeRocket_cart_suggestion_custom_post extends BeRocket_custom_post_class {
         add_filter('brfr_'.$this->hook_name.'_products_var', array($this, 'products_var'), 20, 4);
         add_filter('brfr_'.$this->hook_name.'_category_var', array($this, 'category_var'), 20, 4);
     }
-    public function init_conditions($info) {
-        if( $info['id'] == 11 ) {
-            $this->conditions = new BeRocket_conditions_cart_suggestion($this->post_name.'[condition]', $this->hook_name, array(
-                'condition_product',
-                'condition_product_category',
-                'condition_product_attribute',
-                'condition_product_age',
-                'condition_product_saleprice',
-                'condition_product_sale',
-                'condition_product_bestsellers',
-                'condition_product_price',
-                'condition_product_stockstatus',
-                'condition_product_stockquantity',
-                'condition_product_totalsales',
-            ));
-        }
+    function init_translation() {
+        $this->post_settings['label'] = __( 'Suggestion', 'cart-products-suggestions-for-woocommerce' );
+        $this->post_settings['labels'] = array(
+            'name'               => __( 'Suggestions', 'cart-products-suggestions-for-woocommerce' ),
+            'singular_name'      => __( 'Suggestion', 'cart-products-suggestions-for-woocommerce' ),
+            'menu_name'          => _x( 'Suggestions', 'Admin menu name', 'cart-products-suggestions-for-woocommerce' ),
+            'add_new'            => __( 'Add Suggestion', 'cart-products-suggestions-for-woocommerce' ),
+            'add_new_item'       => __( 'Add New Suggestion', 'cart-products-suggestions-for-woocommerce' ),
+            'edit'               => __( 'Edit', 'cart-products-suggestions-for-woocommerce' ),
+            'edit_item'          => __( 'Edit Suggestion', 'cart-products-suggestions-for-woocommerce' ),
+            'new_item'           => __( 'New Suggestion', 'cart-products-suggestions-for-woocommerce' ),
+            'view'               => __( 'View Suggestions', 'cart-products-suggestions-for-woocommerce' ),
+            'view_item'          => __( 'View Suggestion', 'cart-products-suggestions-for-woocommerce' ),
+            'search_items'       => __( 'Search Suggestions', 'cart-products-suggestions-for-woocommerce' ),
+            'not_found'          => __( 'No Suggestions found', 'cart-products-suggestions-for-woocommerce' ),
+            'not_found_in_trash' => __( 'No Suggestions found in trash', 'cart-products-suggestions-for-woocommerce' ),
+        );
+        $this->post_settings['description'] = __( 'This is where you can add new suggestions that you can add to products.', 'cart-products-suggestions-for-woocommerce' );
+        $this->conditions = new BeRocket_conditions_cart_suggestion($this->post_name.'[condition]', $this->hook_name, array(
+            'condition_product',
+            'condition_product_category',
+            'condition_product_attribute',
+            'condition_product_age',
+            'condition_product_saleprice',
+            'condition_product_sale',
+            'condition_product_bestsellers',
+            'condition_product_price',
+            'condition_product_stockstatus',
+            'condition_product_stockquantity',
+            'condition_product_totalsales',
+        ));
+
+        $this->add_meta_box('conditions', __( 'Conditions', 'cart-products-suggestions-for-woocommerce' ));
+        $this->add_meta_box('settings', __( 'Cart Suggestion Settings', 'cart-products-suggestions-for-woocommerce' ));
+        $this->add_meta_box('description', __( 'Description', 'cart-products-suggestions-for-woocommerce' ), false, 'side');
     }
     public function conditions($post) {
         $options = $this->get_option( $post->ID );
