@@ -5,7 +5,7 @@ Donate link: https://berocket.com/?utm_source=wordpress_org&utm_medium=donate&ut
 Tags: related products, products suggestion, products promo, woocommerce promotion, woocommerce cart suggestions, woocommerce suggest product, cart suggestion, promote my products, suggest products in cart, product recommendation plugin, promote new product, offer bundle, new version of product, link to woocommerce product, custom product notice, checkout suggestion, show suggestion in cart, cart promo, suggestion cart message, suggest new product, link to product woocommerce, berocket, berocket oroducts suggestions for woocommerce
 Requires at least: 5.0
 Tested up to: 6.7
-Stable tag: 3.6
+Stable tag: 3.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -91,6 +91,11 @@ If none of the previous listed actions helps you solve the problem, then, submit
 ---
 
 == Changelog ==
+
+= 3.6.1 =
+* Enhancement - Compatibility version: WooCommerce 9.5
+* Fix - Change CDN links for elements
+* Fix - Divi module fix
 
 = 3.6 =
 * Enhancement - Compatibility version: Wordpress 6.7 and WooCommerce 9.4

@@ -633,7 +633,9 @@ class BeRocket_cart_suggestion extends BeRocket_Framework {
         return $compatibility;
     }
     public function divi_initialize_extension() {
-        require_once plugin_dir_path( __FILE__ ) . 'divi/includes/CartSuggestionExtension.php';
+        if( class_exists('DiviExtension') ) {
+            require_once plugin_dir_path( __FILE__ ) . 'divi/includes/CartSuggestionExtension.php';
+        }
     }
 }
 
